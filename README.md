@@ -15,7 +15,7 @@ Welcome to the Spotify Card Lyric Generator! This web application allows you to 
 
 - [ ] **Search Album Cover:** Possibility to search and select the album cover from an external source.
 - [ ] **Lyric API Integration:** Interact with a lyrics API to fetch and display the complete lyrics.
-
+- [ ] **Enhance customization:** Incorporate your preferred background color.
 
 ## Demo
 
