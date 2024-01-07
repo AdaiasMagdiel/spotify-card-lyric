@@ -2,13 +2,15 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	font-family: "Poppins", sans-serif;
 }
 
 main {
+	font-family: ;
 	display: flex;
 	gap: 30px;
 	padding: 30px;
-	width: 80%;
+	width: 90%;
 	max-width: 780px;
 	margin-inline: auto;
 }
@@ -29,8 +31,8 @@ main>* {
 }
 
 .info textarea {
-	font-size: 16px;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: 14px;
+	font-family: ;
 	resize: none;
 	height: 100%;
 	padding: 10px 20px;
@@ -52,11 +54,12 @@ main>* {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: end;
+	gap: 5px;
 }
 
 .colors button {
 	border-radius: 999999px;
-	border: none;
+	border: 1px solid rgba(0, 0, 0, .3);
 	cursor: pointer;
 	display: block;
 	width: 20px;
@@ -67,6 +70,16 @@ main>* {
 	transform: scale(.95);
 }
 
-.colors .lime {
-	background-color: #267d50;
+
+@media screen and (max-width: 767px) {
+  main {
+  	flex-direction: column;
+  }
+  main > * {
+  	width: 100%;
+  }
+
+  .info textarea {
+  	min-height: 130px;
+  }
 }
