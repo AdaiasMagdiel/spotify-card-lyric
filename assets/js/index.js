@@ -194,7 +194,7 @@ function createImage(canvas) {
 	const link = document.createElement('a')
 
 	link.href = dataURL
-	link.download = `${slugify(song.value)}-${slugify(artist.value)}.png`
+	link.download = `${slugify(song.value)}_${slugify(artist.value)}.png`
 
 	link.click()
 }
