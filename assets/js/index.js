@@ -3,6 +3,7 @@ const song = document.querySelector('#song')
 const artist = document.querySelector('#artist')
 const lyric = document.querySelector('#lyric')
 const colorsBox = document.querySelector('.colors')
+const saveButton = document.querySelector('.save')
 
 const canvas = document.querySelector('#result')
 const ctx = canvas.getContext('2d')
@@ -30,6 +31,15 @@ let fontFamily = 'Arial, sans-serif'
 const PADDING = 75
 const SPACING = 15
 const IMAGE_PERCENT = 20.45
+
+function slugify(text) {
+    return text.toString().toLowerCase()
+	    .replace(/\s+/g, '-')
+	    .replace(/[^\w\-]+/g, '')
+	    .replace(/\-\-+/g, '-')
+	    .replace(/^-+/, '')
+	    .replace(/-+$/, '');
+}
 
 function getContrastColor(hexColor) {
     const r = parseInt(hexColor.slice(1, 3), 16);
@@ -70,6 +80,7 @@ function generateButtonColors() {
 function drawImage() {
 	const image = new Image()
 	image.src = cover.value
+	image.crossOrigin = "anonymous"
 
 	const size = IMAGE_PERCENT / 100 * canvas.width
 
@@ -178,6 +189,16 @@ function drawWatermark() {
 	ctx.textAlign = 'start'
 }
 
+function createImage(canvas) {
+	const dataURL = canvas.toDataURL('image/png')
+	const link = document.createElement('a')
+
+	link.href = dataURL
+	link.download = `${slugify(song.value)}-${slugify(artist.value)}.png`
+
+	link.click()
+}
+
 function draw() {
 	ctx.fillStyle = actualColor
 	ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -196,9 +217,12 @@ Array.from([song, artist, lyric]).forEach(elm => {
 cover.addEventListener('input', (e) => {
 	const image = new Image()
 	image.src = e.target.value
+	image.crossOrigin = "anonymous"
 
 	image.addEventListener('load', draw)
 })
+
+saveButton.addEventListener('click', () => createImage(canvas))
 
 generateButtonColors()
 

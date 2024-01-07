@@ -70,6 +70,20 @@ main>* {
 	transform: scale(.95);
 }
 
+.save {
+	background-color: #1DB954;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	text-transform: uppercase;
+	padding: 8px 4px;
+	width: 100%;
+}
+.save:active {
+	background-color: #0CA843;
+	transform: scale(.99);
+}
 
 @media screen and (max-width: 767px) {
   main {
