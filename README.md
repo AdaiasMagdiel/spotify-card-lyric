@@ -11,6 +11,12 @@ Welcome to the Spotify Card Lyric Generator! This web application allows you to 
 - **Customization:** Input album cover URL, song name, artist name, and lyrics to personalize your card.
 - **Visual Appeal:** Generates a stylish card similar to Spotify's lyric cards.
 
+## Future Features
+
+- [ ] **Search Album Cover:** Possibility to search and select the album cover from an external source.
+- [ ] **Lyric API Integration:** Interact with a lyrics API to fetch and display the complete lyrics.
+
+
 ## Demo
 
 Check out the [live demo](https://adaiasmagdiel.github.io/spotify-card-lyric) hosted on GitHub Pages.
@@ -52,6 +58,8 @@ If you want to contribute or modify the project, follow these steps:
    ```
 
 5. Create a pull request on the [main repository](https://github.com/adaiasmagdiel/spotify-card-lyric).
+
+
 
 ## License
 
