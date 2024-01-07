@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="assets/css/style.css">
-	<script defer src="assets/js/index.js"></script>
-</head>
+		<title>Spotify Card Lyric Generator</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-<body>
-	<main>
-		<div class="info">
-			<input value="https://github.com/AdaiasMagdiel.png" type="text" placeholder="Album cover" id="coverImage">
-			<input value="Mistério do Planeta" type="text" placeholder="Song name" id="song">
-			<input value="Novos Baianos" type="text" placeholder="Artist name" id="artist">
+		<meta name="author" content="Adaías Magdiel">
+		<meta name="description" content="This web application allows you to create beautifully formatted lyric cards in the style of Spotify.">
 
-			<textarea id="lyric" placeholder="Lyrics">Vou mostrando como sou
-E vou sendo como posso
-Jogando meu corpo no mundo
-Andando por todos os cantos</textarea>
-		</div>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="assets/css/style.css">
 
-		<div class="result_box">
-			<canvas id="result" width="1024" height="1024"></canvas>
-			<div class="colors">
-				<button class="lime"></button>
+		<script defer src="assets/js/index.js"></script>
+	</head>
+	<body>
+		<main>
+			<div class="info">
+				<input type="text" placeholder="Insert the URL of your album cover here" id="coverImage">
+				<input type="text" placeholder="Type your song name here" id="song">
+				<input type="text" placeholder="Type your song artist here" id="artist">
+				<textarea id="lyric" placeholder="Type your song lyrics here"></textarea>
 			</div>
-		</div>
-	</main>
-</body>
-
+			<div class="result_box">
+				<canvas id="result" width="1024" height="1024"></canvas>
+				<div class="colors">
+					<button class="lime"></button>
+				</div>
+			</div>
+		</main>
+	</body>
 </html>
