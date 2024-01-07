@@ -26,7 +26,7 @@ const COLORS = {
 let actualColor = COLORS.lime
 let textColor = getContrastColor(actualColor)
 // const fontFamily = 'Circular'
-const fontFamily = 'Poppins'
+const fontFamily = 'Poppins, sans-serif'
 
 const PADDING = 75
 const SPACING = 15
@@ -197,4 +197,7 @@ cover.addEventListener('input', (e) => {
 })
 
 generateButtonColors()
-draw()
+
+document.fonts.ready.then(() => {
+    draw();
+});
