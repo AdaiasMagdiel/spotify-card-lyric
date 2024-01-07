@@ -25,8 +25,7 @@ const COLORS = {
 
 let actualColor = COLORS.lime
 let textColor = getContrastColor(actualColor)
-// const fontFamily = 'Circular'
-const fontFamily = 'Poppins, sans-serif'
+let fontFamily = 'Arial, sans-serif'
 
 const PADDING = 75
 const SPACING = 15
@@ -37,23 +36,18 @@ function getContrastColor(hexColor) {
     const g = parseInt(hexColor.slice(3, 5), 16);
     const b = parseInt(hexColor.slice(5, 7), 16);
 
-    // Calcula o brilho percebido (luminosidade percebida)
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
 
-    // Decide se deve usar texto branco ou preto com base no brilho percebido
     return brightness > 128 ? '#000000' : '#FFFFFF';
 }
 
 function addTransparencyToHexColor(hexColor, transparency) {
-    // Verifique se o valor de transparência está dentro do intervalo [0, 1]
     transparency = Math.min(1, Math.max(0, transparency));
 
-    // Converte a cor hexadecimal para RGB
     const r = parseInt(hexColor.slice(1, 3), 16);
     const g = parseInt(hexColor.slice(3, 5), 16);
     const b = parseInt(hexColor.slice(5, 7), 16);
 
-    // Retorna a cor no formato RGBA
     return `rgba(${r}, ${g}, ${b}, ${transparency})`;
 }
 
@@ -85,21 +79,20 @@ function drawImage() {
 }
 
 function drawText(text, x, y, maxWidth, lineHeight = 20) {
-    var words = text.split(' ');
-    var line = '';
-    var yPosition = y;
-    var lineCount = 1; // Inicializa a contagem de linhas
+    const words = text.split(' ');
+    let line = '';
+    let yPosition = y;
+    let lineCount = 1;
 
-    for (var i = 0; i < words.length; i++) {
-        var testLine = line + words[i] + ' ';
-        var metrics = ctx.measureText(testLine);
-        var testWidth = metrics.width;
+    for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i] + ' ';
+        const metrics = ctx.measureText(testLine);
 
-        if (testWidth > maxWidth && i > 0) {
+        if (metrics.width > maxWidth && i > 0) {
             ctx.fillText(line, x, yPosition);
             line = words[i] + ' ';
             yPosition += lineHeight;
-            lineCount++; // Incrementa a contagem de linhas
+            lineCount++;
         } else {
             line = testLine;
         }
@@ -107,7 +100,7 @@ function drawText(text, x, y, maxWidth, lineHeight = 20) {
 
     ctx.fillText(line, x, yPosition);
 
-    return lineCount; // Retorna o número de linhas
+    return lineCount;
 }
 
 
@@ -158,16 +151,27 @@ function writeLyric() {
 }
 
 function drawWatermark() {
+	const fontSize = 18
+
 	ctx.fillStyle = textColor
-	ctx.font = "600 25px " + fontFamily;
-	ctx.textBaseline = 'start'
-	ctx.textAlign = 'start'
+	ctx.font = `600 ${fontSize}px ${fontFamily}`;
+	ctx.textBaseline = 'center'
+	ctx.textAlign = 'middle'
 
-	const watermark = 'https://adaiasmagdiel.github.io/spotify-card-lyric'.toUpperCase()
-	const textSize = ctx.measureText(watermark);
-	const x = canvas.width / 2 - textSize.width / 2
-	const y = canvas.height - PADDING / 2
+	const watermark = 'adaiasmagdiel.github.io/spotify-card-lyric'.toUpperCase()
+	const metrics = ctx.measureText(watermark);
+	const x = canvas.width / 2 - metrics.width / 2
+	const y = canvas.height - PADDING / 3
 
+	const rectX = 0;
+	const sizeX = canvas.width
+	const rectY = canvas.height - PADDING / 3 - 1.5*fontSize
+	const sizeY = fontSize * 4
+
+	ctx.fillStyle = actualColor
+	ctx.fillRect(rectX, rectY, sizeX, sizeY)
+
+	ctx.fillStyle = textColor
 	ctx.fillText(watermark, x, y)
 
 	ctx.textBaseline = 'alphabetic'
@@ -199,5 +203,6 @@ cover.addEventListener('input', (e) => {
 generateButtonColors()
 
 document.fonts.ready.then(() => {
+	fontFamily = 'Poppins, sans-serif'
     draw();
 });
