@@ -230,3 +230,7 @@ document.fonts.ready.then(() => {
 	fontFamily = 'Poppins, sans-serif'
     draw();
 });
+
+window.inputFields = {
+	cover, song, artist, lyric, draw
+}

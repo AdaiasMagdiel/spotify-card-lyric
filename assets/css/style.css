@@ -30,9 +30,12 @@ main>* {
 	padding: 10px 20px;
 }
 
+.info input.error {
+	border: 2px solid #ff4545;
+}
+
 .info textarea {
 	font-size: 14px;
-	font-family: ;
 	resize: none;
 	height: 100%;
 	padding: 10px 20px;
@@ -70,7 +73,8 @@ main>* {
 	transform: scale(.95);
 }
 
-.save {
+.save,
+.search {
 	background-color: #1DB954;
 	border: none;
 	border-radius: 5px;
@@ -80,20 +84,75 @@ main>* {
 	padding: 8px 4px;
 	width: 100%;
 }
-.save:active {
+
+.save:active,
+.search:active {
 	background-color: #0CA843;
 	transform: scale(.99);
 }
 
 @media screen and (max-width: 767px) {
-  main {
-  	flex-direction: column;
-  }
-  main > * {
-  	width: 100%;
-  }
+	main {
+		flex-direction: column;
+	}
 
-  .info textarea {
-  	min-height: 130px;
-  }
+	main>* {
+		width: 100%;
+	}
+
+	.info textarea {
+		min-height: 130px;
+	}
+}
+
+/* MODAL */
+
+
+
+#modal {
+	display: none;
+	background-color: #00000045;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 20px 10px;
+	width: 100vw;
+	height: 100vh;
+}
+
+#modal.show {
+	display: block;
+}
+
+.modal__wrapper {
+	border-radius: 5px;
+	background: #fff;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	width: 90%;
+	max-width: 520px;
+	margin: auto;
+	padding: 10px;
+}
+
+.modal__wrapper .result {
+	width: 100%;
+	padding: 10px;
+	aspect-ratio: 1;
+}
+
+.modal__wrapper .result .result__img {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+.modal__wrapper .result .result__song {
+	font-size: 14px;
+}
+
+.modal__wrapper .result .result__artist {
+	color: dimgray;
+	font-size: 12px;
 }
