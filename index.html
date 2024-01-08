@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Spotify Card Lyric Generator</title>
-		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<meta name="author" content="Adaías Magdiel">
-		<meta name="description" content="This web application allows you to create beautifully formatted lyric cards in the style of Spotify.">
+	<title>Spotify Card Lyric Generator</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/style.css">
+	<meta name="author" content="Adaías Magdiel">
+	<meta name="description"
+		content="This web application allows you to create beautifully formatted lyric cards in the style of Spotify.">
 
-		<script defer src="assets/js/index.js"></script>
-	</head>
-	<body>
-		<main>
-			<div class="info">
-				<input type="text" placeholder="Insert the URL of your album cover here" id="coverImage">
-				<input type="text" placeholder="Type your song name here" id="song">
-				<input type="text" placeholder="Type your song artist here" id="artist">
-				<textarea id="lyric" placeholder="Type your song lyrics here"></textarea>
-			</div>
-			<div class="result_box">
-				<canvas id="result" width="1024" height="1024"></canvas>
-				<div class="colors"></div>
-				<button class="save">Salvar Imagem</button>
-			</div>
-		</main>
-	</body>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<script defer src="assets/js/index.js"></script>
+	<script defer src="assets/js/lyrics.js"></script>
+</head>
+
+<body>
+	<main>
+		<div class="info">
+			<input type="text" placeholder="Insert the URL of your album cover here" id="coverImage">
+			<input value="Fireside" type="text" placeholder="Type your song name here" id="song">
+			<input value="Arctic Monkeys" type="text" placeholder="Type your song artist here" id="artist">
+			<textarea id="lyric" placeholder="Type your song lyrics here"></textarea>
+			<button class="search">Pesquisar</button>
+		</div>
+		<div class="result_box">
+			<canvas id="result" width="1024" height="1024"></canvas>
+			<div class="colors"></div>
+			<button class="save">Salvar Imagem</button>
+		</div>
+	</main>
+
+	<div id="modal">
+		<div class="modal__wrapper">
+		</div>
+	</div>
+</body>
+
 </html>
