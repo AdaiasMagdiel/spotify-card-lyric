@@ -14,6 +14,9 @@ async function evalSearch(artistName, songName) {
 	const res = await fetch(`https://api.vagalume.com.br/search.php?art=${artistName}&mus=${songName}&extra=alb&apikey=660a4395f992ff67786584e238f501aa`)
 	const data = await res.json()
 
+	// TODO: Sometimes data.alb is null
+	// TODO: Verify and resolve Not Found case
+
 	drawModal(data)
 }
 
@@ -86,7 +89,7 @@ function createLyricButton(content) {
 
 function drawLyricModal(img, artistName, songName, lyricContent) {
 	TOTAL_LYRIC = 0
-	
+
 	const image = document.querySelector('#lyric-box .header__img')
 	const artist = document.querySelector('#lyric-box .header__info_artist')
 	const song = document.querySelector('#lyric-box .header__info_song')
