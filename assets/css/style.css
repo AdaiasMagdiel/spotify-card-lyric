@@ -74,7 +74,8 @@ main>* {
 }
 
 .save,
-.search {
+.search,
+.generate-card {
 	background-color: #1DB954;
 	border: none;
 	border-radius: 5px;
@@ -86,7 +87,8 @@ main>* {
 }
 
 .save:active,
-.search:active {
+.search:active,
+.generate-card {
 	background-color: #0CA843;
 	transform: scale(.99);
 }
@@ -106,8 +108,6 @@ main>* {
 }
 
 /* MODAL */
-
-
 
 #modal {
 	display: none;
@@ -134,6 +134,25 @@ main>* {
 	max-width: 520px;
 	margin: auto;
 	padding: 10px;
+	position: relative;
+}
+
+.modal__wrapper .modal__close {
+	border: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	background-color: #efefef;
+	border-radius: 2px;
+	cursor: pointer;
+	font-weight: bold;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	aspect-ratio: 1;
+}
+
+.modal__wrapper .modal__close:active {
+	transform: scale(.95);
 }
 
 .modal__wrapper .result {
@@ -155,4 +174,101 @@ main>* {
 .modal__wrapper .result .result__artist {
 	color: dimgray;
 	font-size: 12px;
+}
+
+
+/* LYRIC BOX */
+
+#lyric-box {
+	display: none;
+	background-color: #00000045;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 20px 10px;
+	width: 100vw;
+	height: 100vh;
+}
+
+#lyric-box.show {
+	display: block;
+}
+
+.lyric-box__wrapper {
+	border-radius: 5px;
+	background: #fff;
+	width: 90%;
+	max-width: 520px;
+	margin: auto;
+	padding: 20px;
+	position: relative;
+	max-height: 100%;
+	overflow-y: scroll;
+}
+
+.lyric-box__wrapper .lyric__close {
+	border: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	background-color: #efefef;
+	border-radius: 2px;
+	cursor: pointer;
+	font-weight: bold;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	aspect-ratio: 1;
+}
+
+.lyric-box__wrapper .header {
+	display: flex;
+	gap: 10px;
+}
+
+.lyric-box__wrapper .header .header__img {
+	width: 20%;
+	aspect-ratio: 1;
+}
+
+.lyric-box__wrapper .header .header__info {
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+}
+
+.lyric-box__wrapper .header .header__info .header__info_song {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.lyric-box__wrapper .header .header__info .header__info_artist {
+	color: dimgray;
+	font-size: 14px;
+}
+
+.lyric-box__wrapper .body {
+	margin-top: 10px;
+	height: 100%;
+}
+
+.lyric-box__wrapper .body button {
+	border: none;
+	background-color: transparent;
+	border-radius: 5px;
+	display: block;
+	cursor: pointer;
+	font-size: 16px;
+	margin-block: 5px;
+	text-align: left;
+	padding: 0 5px;
+	padding-left: 0;
+}
+
+.lyric-box__wrapper .body button.active {
+	background-color: palegreen;
+	padding-left: 5px;
+}
+
+.generate-card {
+	margin-top: 20px;
 }

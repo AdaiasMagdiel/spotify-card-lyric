@@ -25,8 +25,8 @@
 	<main>
 		<div class="info">
 			<input type="text" placeholder="Insert the URL of your album cover here" id="coverImage">
-			<input value="Fireside" type="text" placeholder="Type your song name here" id="song">
-			<input value="Arctic Monkeys" type="text" placeholder="Type your song artist here" id="artist">
+			<input type="text" placeholder="Type your song name here" id="song">
+			<input type="text" placeholder="Type your song artist here" id="artist">
 			<textarea id="lyric" placeholder="Type your song lyrics here"></textarea>
 			<button class="search">Pesquisar</button>
 		</div>
@@ -39,6 +39,26 @@
 
 	<div id="modal">
 		<div class="modal__wrapper">
+			<button class="modal__close">X</button>
+		</div>
+	</div>
+
+	<div id="lyric-box">
+		<div class="lyric-box__wrapper">
+			<button class="lyric__close">X</button>
+
+			<div class="header">
+				<img class="header__img" src="">
+				<div class="header__info">
+					<p class="header__info_song"></p>
+					<p class="header__info_artist"></p>
+				</div>
+			</div>
+
+			<div class="body">
+			</div>
+
+			<button class="generate-card">Gerar Card</button>
 		</div>
 	</div>
 </body>

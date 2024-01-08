@@ -1,11 +1,18 @@
 const search = document.querySelector('.search')
+let TOTAL_LYRIC = 0
+
 const modal = document.querySelector('#modal')
 const modalBox = document.querySelector('.modal__wrapper')
+const modalClose = document.querySelector('.modal__close')
+
+const lyricModal = document.querySelector('#lyric-box')
+const lyricModalBox = document.querySelector('.lyric-box__wrapper')
+const lyricModalClose = document.querySelector('.lyric__close')
+const lyricModalTrigger = document.querySelector('.generate-card')
 
 async function evalSearch(artistName, songName) {
 	const res = await fetch(`https://api.vagalume.com.br/search.php?art=${artistName}&mus=${songName}&extra=alb&apikey=660a4395f992ff67786584e238f501aa`)
 	const data = await res.json()
-	console.log(data)
 
 	drawModal(data)
 }
@@ -31,21 +38,17 @@ function createResult(img, artist, song, lyric) {
 	result.appendChild(artistElm)
 
 	result.addEventListener('click', () => {
-		inputFields.artist.value = artist
-		inputFields.song.value = song
-		inputFields.lyric.value = lyric
-		inputFields.cover.value = img
-
 		modal.classList.remove('show')
 		search.disabled = false
-		draw()
+
+		drawLyricModal(img, artist, song, lyric)
 	})
 
 	return result
 }
 
 function drawModal(data) {
-	modalBox.innerHTML = ''
+	modalBox.innerHTML = '<button class="modal__close">X</button>'
 
 	for (let item of data.mus) {
 		const img = item.alb.url.replace('html', 'jpg')
@@ -57,6 +60,51 @@ function drawModal(data) {
 	}
 
 	modal.classList.add('show')
+}
+
+function createLyricButton(content) {
+	const button = document.createElement('button')
+	button.appendChild(document.createTextNode(content))
+
+	button.addEventListener('click', (e) => {
+		const isActive = e.currentTarget.className.includes('active')
+
+		if (isActive) {
+			e.currentTarget.classList.remove('active')
+			TOTAL_LYRIC--
+		}
+		else {
+			if (TOTAL_LYRIC === 7) return
+
+			e.currentTarget.classList.add('active')
+			TOTAL_LYRIC++
+		}
+	})
+
+	return button
+}
+
+function drawLyricModal(img, artistName, songName, lyricContent) {
+	TOTAL_LYRIC = 0
+	
+	const image = document.querySelector('#lyric-box .header__img')
+	const artist = document.querySelector('#lyric-box .header__info_artist')
+	const song = document.querySelector('#lyric-box .header__info_song')
+	const body = document.querySelector('#lyric-box .body')
+
+	image.src = img
+	artist.innerText = artistName
+	song.innerText = songName
+	body.innerHTML = ''
+
+	for (let excerpt of lyricContent.split('\n')) {
+		if (excerpt === '') continue
+
+		const button = createLyricButton(excerpt)
+		body.appendChild(button)
+	}
+
+	lyricModal.classList.add('show')
 }
 
 search.addEventListener('click', async (e) => {
@@ -83,4 +131,43 @@ document.addEventListener('click', (e) => {
 
 	if (artist.className.includes('error')) artist.classList.remove('error')
 	if (song.className.includes('error')) song.classList.remove('error')
+})
+
+
+modal.addEventListener('click', (e) => {
+	if (e.target !== e.currentTarget) return
+	modal.classList.remove('show')
+	search.disabled = false
+})
+modalClose.addEventListener('click', (e) => {
+	modal.classList.remove('show')
+	search.disabled = false
+})
+
+lyricModal.addEventListener('click', (e) => {
+	if (e.target !== e.currentTarget) return
+	lyricModal.classList.remove('show')
+	search.disabled = false
+})
+lyricModalClose.addEventListener('click', (e) => {
+	lyricModal.classList.remove('show')
+	search.disabled = false
+})
+
+lyricModalTrigger.addEventListener('click', () => {
+	const img = document.querySelector('#lyric-box .header__img')
+	const artist = document.querySelector('#lyric-box .header__info_artist')
+	const song = document.querySelector('#lyric-box .header__info_song')
+	const lyric = Array.from(document.querySelectorAll('#lyric-box .body button'))
+		.filter(item => item.className.includes('active'))
+		.map(item => item.innerText)
+		.join('\n')
+
+	inputFields.artist.value = artist.innerText
+	inputFields.song.value = song.innerText
+	inputFields.lyric.value = lyric
+	inputFields.cover.value = img.src
+	draw()
+
+	lyricModal.classList.remove('show')
 })
