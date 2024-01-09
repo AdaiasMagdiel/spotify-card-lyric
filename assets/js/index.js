@@ -9,22 +9,38 @@ const canvas = document.querySelector('#result')
 const ctx = canvas.getContext('2d')
 
 const COLORS = {
-	lime: '#1DB954',
-	turquoise: '#40E0D0',
-    indigo: '#4B0082',
-    violet: '#8A2BE2',
-    mustardyellow: '#FFDB58',
-    lightpink: '#FFB6C1',
-    limegreen: '#32CD32',
-    steelblue: '#4682B4',
+    darkred: '#8B0000',
+    tomato: '#FF6347',
     coral: '#FF6347',
+    indianred: '#CD5C5C',
+    mediumvioletred: '#C71585',
     chocolatebrown: '#D2691E',
-    silvergray: '#C0C0C0',
+    peru: '#CD853F',
     gold: '#FFD700',
+    mustardyellow: '#FFDB58',
+    silvergray: '#C0C0C0',
+    lavender: '#E6E6FA',
+    mediumorchid: '#BA55D3',
+    darkmagenta: '#8B008B',
+    violet: '#8A2BE2',
+    indigo: '#4B0082',
+    royalblue: '#4169E1',
+    steelblue: '#4682B4',
+    darkslategray: '#2F4F4F',
+    midnightblue: '#191970',
+    turquoise: '#40E0D0',
+    mediumseagreen: '#3CB371',
+    limegreen: '#32CD32',
+    forestgreen: '#228B22',
+    teal: '#008080',
     skyblue: '#87CEEB',
+    palegoldenrod: '#EEE8AA',
+    lime: '#1DB954',
+    greenyellow: '#ADFF2F',
 };
 
-let actualColor = COLORS.lime
+
+let actualColor = Object.values(COLORS)[0];
 let textColor = getContrastColor(actualColor)
 let fontFamily = 'Arial, sans-serif'
 
