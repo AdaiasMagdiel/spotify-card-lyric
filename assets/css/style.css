@@ -86,11 +86,15 @@ main>* {
 	width: 100%;
 }
 
-.save:active,
-.search:active,
+.save:active:not(:disabled),
+.search:active:not(:disabled),
 .generate-card {
 	background-color: #0CA843;
 	transform: scale(.99);
+}
+
+.search:disabled {
+	background: #cecece;
 }
 
 @media screen and (max-width: 767px) {

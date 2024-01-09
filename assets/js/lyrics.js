@@ -11,14 +11,33 @@ const lyricModalClose = document.querySelector('.lyric__close')
 const lyricModalTrigger = document.querySelector('.generate-card')
 
 async function evalSearch(artistName, songName) {
-	const res = await fetch(`https://api.vagalume.com.br/search.php?art=${artistName}&mus=${songName}&extra=alb&apikey=660a4395f992ff67786584e238f501aa`)
-	const data = await res.json()
+  try {
+    const response = await fetch(`https://api.vagalume.com.br/search.php?art=${artistName}&mus=${songName}&extra=alb&apikey=660a4395f992ff67786584e238f501aa`);
+    const data = await response.json();
 
-	// TODO: Sometimes data.alb is null
-	// TODO: Verify and resolve Not Found case
+    if (data.type && data.type === 'notfound') {
+      inputFields.lyric.value = 'Nenhum resultado encontrado.\nAltere a pesquisa e tente novamente!';
+      inputFields.draw();
+      search.disabled = false
+      return;
+    }
 
-	drawModal(data)
+    data.mus = data.mus.map(song => {
+      const modifiedSong = { ...song };
+
+      if (song.alb === null) {
+        modifiedSong.alb = { url: 'https://placehold.co/600x600?text=Capa+N%C3%A3o+Encontrada' };
+      }
+
+      return modifiedSong;
+    });
+
+    drawModal(data);
+  } catch (error) {
+    console.error('Erro na solicitação ou no processamento dos dados:', error);
+  }
 }
+
 
 function createResult(img, artist, song, lyric) {
 	const result = document.createElement('div')
@@ -115,13 +134,13 @@ search.addEventListener('click', async (e) => {
 
 	if (artist.value === '') {
 		artist.classList.add('error')
-		return
 	}
 
 	if (song.value === '') {
 		song.classList.add('error')
-		return
 	}
+
+	if (artist.value === '' || song.value === '') return
 
 	e.currentTarget.disabled = true
 	await evalSearch(artist.value, song.value)
